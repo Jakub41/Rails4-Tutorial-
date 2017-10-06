@@ -1,5 +1,9 @@
 <h1>Blog Posts</h1>
-<h3>One Post</h3>
-<p><%= @content_first %></p>
-<hr>
-<p><%= @content_second %></p>
+
+<% @posts.each do |ps| %>
+
+    <h3><%= link_to ps.title, ps %></h3>
+    <p><%= ps.body %></p>
+    <hr>
+
+<% end %>
