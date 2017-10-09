@@ -11,18 +11,23 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to posts_path, :notice => 'Post saved'
+      redirect_to posts_path, notice: 'Post saved'
     else
       render 'new'
     end
   end
 
   def edit
-
+    @post = Post.find(params[:id])
   end
 
   def update
-
+    @post = Post.find(params[:id])
+    if @post.update_attributes(post_params)
+      redirect_to posts_path, notice: 'Your post have been update'
+    else
+      render 'edit'
+    end
   end
 
   def show
@@ -30,13 +35,15 @@ class PostsController < ApplicationController
   end
 
   def destroy
-
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path, notice: 'Post have been deleted'
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :category_id, :author_id)
+    params.require(:post).permit(:post, :title, :body, :category_id, :author_id)
   end
 
 end
