@@ -1,2 +1,8 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<h1><%= @category.name %></h1>
+<% if @posts.each do |ps| %>
+    <h3><%= link_to ps.title, ps %></h3>
+    <p><%= ps.body %></p>
+<% end.empty? %>
+    <p>Sorry, there are no posts in this category</p>
+<% end %>
+    <%= link_to 'Back to Categories', categories_path %>
