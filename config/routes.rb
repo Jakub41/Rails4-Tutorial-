@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   get 'categories/index'
 
   get 'categories/edit'
@@ -10,4 +13,5 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :posts
   resources :categories
+
 end
